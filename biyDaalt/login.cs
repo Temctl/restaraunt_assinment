@@ -1,10 +1,13 @@
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace biyDaalt
 {
     public partial class login : Form
     {
-        string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True";
+        public  
+
+        string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
         public login()
         {
             InitializeComponent();
@@ -14,7 +17,7 @@ namespace biyDaalt
         {
             string username = this.textBox1.Text; 
             string password = this.textBox2.Text;
-            string cmdString = "SELECT * FROM dbo.Users WHERE email = @val1 AND password = @val2";
+            string cmdString = "SELECT * FROM dbo.User_info WHERE email = @val1 AND password = @val2";
             try
             {
                 using (SqlConnection conn = new SqlConnection(cs))
@@ -23,55 +26,47 @@ namespace biyDaalt
                     {
                         command.Parameters.AddWithValue("@val1", username);
                         command.Parameters.AddWithValue("@val2", password);
+                        Debug.WriteLine("1");
                         conn.Open();
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        Debug.WriteLine("1");
+                        try
                         {
-                            int count = reader.FieldCount;
-                            while (reader.Read())
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                Console.WriteLine(reader);
+                                Debug.WriteLine("1");
+                                reader.Read();
+
+                                Debug.WriteLine(reader["firstName"].ToString());
+                                //while (reader.Read())
+                                //{
+                                //Debug.WriteLine(reader);
+                                //}
                             }
+                        }
+                        catch(Exception exec)
+                        {
+                            if (exec.InnerException is (System.InvalidOperationException))
+                            {
+                                Debug.WriteLine("change it");
+                            }
+                            Debug.WriteLine(exec.GetType);  
                         }
                     }
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Debug.WriteLine("error: ---- " + ex.ToString);
             }
         }
 
         public void signup_clicked(object sender, EventArgs e)
         {
-            string cmdString = "INSERT INTO dbo.Users (firstName, lastName, email, password, phoneNumber, address) VALUES (@val1, @val2, @val3, @val4, @val5, @val6)";
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(cs))
-                {
-                    using (var command = new SqlCommand())
-                    {
-                        command.Connection = conn;
-                        command.CommandText = cmdString;
-                        //comm.Parameters.AddWithValue("@val1", txtbox1.Text);
-                        //comm.Parameters.AddWithValue("@val2", txtbox2.Text);
-                        //comm.Parameters.AddWithValue("@val3", txtbox3.Text);
-                        try
-                        {
-                            conn.Open();
-                            command.ExecuteNonQuery();
-                        }
-                        catch (Exception){
-
-                        }
-                    }
-                }
-                
-            }
-            catch (Exception)
-            {
-
-            }
+            signup signup = new signup();
+            signup.ShowDialog();
         }
+
+
     }
 }
