@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace biyDaalt
 {
@@ -28,11 +29,21 @@ namespace biyDaalt
             if (checkPassword())
             {
                 info.Add(this.textBox1.Text);
-                config.setEverything(info);
+                bool result = config.setEverything(info, true);
+                if (result)
+                {
+                    this.Hide();
+                    MessageBox.Show("Password updated!");
+                    this.Dispose();
+                }
+                else
+                {
+                    Debug.WriteLine("something went wrong");
+                }
             }
             else
             {
-                this.label3.Text = "The password does not match.";
+                this.label3.Text = "The password does not match.Try again!";
             }
         }
         private bool checkPassword()
@@ -45,6 +56,11 @@ namespace biyDaalt
             {
                 return false;
             }
+        }
+
+        public void erase()
+        {
+            this.Dispose();
         }
     }
 }

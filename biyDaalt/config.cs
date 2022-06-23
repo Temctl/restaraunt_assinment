@@ -13,9 +13,23 @@ namespace biyDaalt
     {
         private static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
 
+        public static bool isAdmin = false;
+        public static bool IsAdmin
+        {
+            get { return isAdmin; }
+            set { isAdmin = value; }
+        }
+
+        public static bool logged = false;
+        public static bool Logged
+        {
+            get { return logged; }
+            set { logged = value; }
+        }
+
         public static string firstName;
         public static string lastName;
-        public static string id;
+        //public static string id;
         public static string email;
         public static string phoneNumber;
         public static string address;
@@ -32,11 +46,11 @@ namespace biyDaalt
             get { return lastName; }
             set { lastName = value; }
         }
-        public static string Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        //public static string Id
+        //{
+           // get { return id; }
+           // set { id = value; }
+       // }
         public static string Email
         {
             get { return email; }
@@ -61,7 +75,7 @@ namespace biyDaalt
         //
         //functions
         //
-        public static void setEverything(List<string> info)
+        public static bool setEverything(List<string> info, bool newUser)
         {
             try
             {
@@ -71,11 +85,19 @@ namespace biyDaalt
                 PhoneNumber = info[3];
                 Address = info[4];
                 Password = info[5];
-                signup();
+                if (newUser)
+                {
+                    signup();
+                }
+                else
+                {
+                    Logged = true;
+                }
+                return true;
             }
             catch (Exception)
             {
-
+                return false;
             }
         }
 
@@ -116,6 +138,15 @@ namespace biyDaalt
             {
 
             }
+        }
+
+        public void clean()
+        {
+            FirstName = "";
+            LastName = "";
+            Email = "";
+            PhoneNumber = "";
+            Address = "";
         }
     }
 }

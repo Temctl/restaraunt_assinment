@@ -15,11 +15,37 @@ namespace biyDaalt
         public welcomePage()
         {
             InitializeComponent();
+            statusChanged();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void statusChanged()
+        {
+            if (config.logged)
+            {
+                this.button1.Text = "Switch Account";
+                this.button5.Hide();
+            }
+            else
+            {
+                this.richTextBox4.Hide();
+                this.button4.Hide();
+            }
+            
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        public void login(object sender, EventArgs e)
+        {
+            login login = new login();
+            login.ShowDialog();
         }
     }
 }
