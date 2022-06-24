@@ -17,6 +17,7 @@ namespace biyDaalt
         {
             InitializeComponent();
             statusChanged();
+            Dictionary<string, object> reviews = dataHandler.return_review();
         }
 
         public static void statusChanged()
@@ -65,7 +66,12 @@ namespace biyDaalt
         public void submit_review(object sender, EventArgs e)
         {
             bool result = dataHandler.submit_review(richTextBox4.Text, config.FirstName, config.LastName, Decimal.ToInt32(numericUpDown1.Value));
-            if (!result)
+            if (result)
+            {
+                richTextBox4.Text = "";
+                numericUpDown1.Value = 0;
+            }
+            else
             {
                 Debug.WriteLine("something went wrong");
             }
