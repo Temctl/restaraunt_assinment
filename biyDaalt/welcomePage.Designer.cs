@@ -2,7 +2,7 @@
 {
     partial class welcomePage
     {
-        
+
 
 
         /// <summary>
@@ -31,7 +31,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -45,32 +45,37 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
+            label8 = new System.Windows.Forms.Label();
+            numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            label7 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            button5 = new System.Windows.Forms.Button();
+            button4 = new System.Windows.Forms.Button();
+            label5 = new System.Windows.Forms.Label();
+            richTextBox4 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(330, 461);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "login";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.login);
+            button1.Location = new System.Drawing.Point(330, 461);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(102, 23);
+            button1.TabIndex = 0;
+            button1.Text = "login";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += new System.EventHandler(this.login);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(34, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(701, 406);
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Image = Image.FromFile("../../../image.jpg");
@@ -140,21 +145,21 @@
             // 
             // richTextBox3
             // 
+            this.richTextBox3.Enabled = false;
             this.richTextBox3.Location = new System.Drawing.Point(6, 320);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(205, 96);
             this.richTextBox3.TabIndex = 9;
             this.richTextBox3.Text = "";
-            this.richTextBox3.Enabled = false;
             // 
             // richTextBox2
             // 
+            this.richTextBox2.Enabled = false;
             this.richTextBox2.Location = new System.Drawing.Point(6, 187);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(201, 96);
             this.richTextBox2.TabIndex = 8;
             this.richTextBox2.Text = "";
-            this.richTextBox2.Enabled = false;
             // 
             // label2
             // 
@@ -167,12 +172,12 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Enabled = false;
             this.richTextBox1.Location = new System.Drawing.Point(6, 68);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(205, 85);
             this.richTextBox1.TabIndex = 6;
             this.richTextBox1.Text = "";
-            this.richTextBox1.Enabled = false;
             // 
             // label1
             // 
@@ -185,10 +190,14 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button5);
-            this.tabPage2.Controls.Add(this.button4);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.richTextBox4);
+            this.tabPage2.Controls.Add(label8);
+            this.tabPage2.Controls.Add(numericUpDown1);
+            this.tabPage2.Controls.Add(label7);
+            this.tabPage2.Controls.Add(label6);
+            this.tabPage2.Controls.Add(button5);
+            this.tabPage2.Controls.Add(button4);
+            this.tabPage2.Controls.Add(label5);
+            this.tabPage2.Controls.Add(richTextBox4);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -197,41 +206,78 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new System.Drawing.Point(6, 126);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(44, 15);
+            label8.TabIndex = 8;
+            label8.Text = "Review";
+            label8.Click += new System.EventHandler(label8_Click);
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new System.Drawing.Point(6, 90);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new System.Drawing.Size(120, 23);
+            numericUpDown1.TabIndex = 7;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(132, 98);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(54, 15);
+            label7.TabIndex = 6;
+            label7.Text = "out of 10";
+            label7.Click += new System.EventHandler(label7_Click);
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(6, 72);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(41, 15);
+            label6.TabIndex = 5;
+            label6.Text = "Rating";
+            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(50, 367);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(121, 67);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.login);
+            button5.Location = new System.Drawing.Point(50, 367);
+            button5.Name = "button5";
+            button5.Size = new System.Drawing.Size(121, 67);
+            button5.TabIndex = 3;
+            button5.Text = "Login";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += new System.EventHandler(this.login);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(136, 311);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            button4.Location = new System.Drawing.Point(136, 303);
+            button4.Name = "button4";
+            button4.Size = new System.Drawing.Size(75, 23);
+            button4.TabIndex = 2;
+            button4.Text = "submit";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += new System.EventHandler(this.submit_review);
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 43);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 15);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "label5";
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(6, 20);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(38, 15);
+            label5.TabIndex = 1;
+            label5.Text = "label5";
             // 
             // richTextBox4
             // 
-            this.richTextBox4.Location = new System.Drawing.Point(6, 108);
-            this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.Size = new System.Drawing.Size(205, 181);
-            this.richTextBox4.TabIndex = 0;
-            this.richTextBox4.Text = "";
+            richTextBox4.Location = new System.Drawing.Point(6, 144);
+            richTextBox4.Name = "richTextBox4";
+            richTextBox4.Size = new System.Drawing.Size(205, 153);
+            richTextBox4.TabIndex = 0;
+            richTextBox4.Text = "";
             // 
             // welcomePage
             // 
@@ -242,7 +288,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(button1);
             this.Name = "welcomePage";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -251,13 +297,12 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Button button1;
         private PictureBox pictureBox1;
         private Button button2;
         private Button button3;
@@ -271,9 +316,14 @@
         private Label label2;
         private RichTextBox richTextBox1;
         private Label label1;
-        private Button button5;
-        private Button button4;
-        private Label label5;
-        private RichTextBox richTextBox4;
+        static private Label label8;
+        static private NumericUpDown numericUpDown1;
+        static private Label label7;
+        static private Label label6;
+        static private Button button1;
+        static private Button button5;
+        static private Button button4;
+        static private Label label5;
+        static private RichTextBox richTextBox4;
     }
 }

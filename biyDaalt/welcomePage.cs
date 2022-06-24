@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace biyDaalt
 {
@@ -18,17 +19,30 @@ namespace biyDaalt
             statusChanged();
         }
 
-        public void statusChanged()
+        public static void statusChanged()
         {
             if (config.logged)
             {
-                this.button1.Text = "Switch Account";
-                this.button5.Hide();
+                button1.Text = "Switch Account";
+                button5.Hide();
+                richTextBox4.Show();
+                button4.Show();
+                label5.Text = "How was our service?";
+                numericUpDown1.Show();
+                label7.Show();
+                label6.Show();
+                label8.Show();
             }
             else
             {
-                this.richTextBox4.Hide();
-                this.button4.Hide();
+                button5.Show();
+                label5.Text = "Log in to write a review";
+                richTextBox4.Hide();
+                button4.Hide();
+                numericUpDown1.Hide();
+                label7.Hide();
+                label6.Hide();
+                label8.Hide();
             }
             
         }
@@ -46,6 +60,25 @@ namespace biyDaalt
         {
             login login = new login();
             login.ShowDialog();
+        }
+
+        public void submit_review(object sender, EventArgs e)
+        {
+            bool result = dataHandler.submit_review(richTextBox4.Text, config.FirstName, config.LastName, Decimal.ToInt32(numericUpDown1.Value));
+            if (!result)
+            {
+                Debug.WriteLine("something went wrong");
+            }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
