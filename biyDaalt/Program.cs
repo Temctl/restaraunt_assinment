@@ -20,9 +20,21 @@ namespace biyDaalt
             }
             else
             {
-                List<String> row1 = reviews["1"];
-                List<String> row2 = reviews["2"];
-                List<String> row3 = reviews["3"];
+                List<String> row1 = null;
+                List<String> row2 = null;
+                List<String> row3 = null;
+                if (reviews.ContainsKey("1"))
+                {
+                    row1 = reviews["1"];
+                }
+                if (reviews.ContainsKey("2"))
+                {
+                    row2 = reviews["2"];
+                }
+                if (reviews.ContainsKey("3"))
+                {
+                    row3 = reviews["3"];
+                }                
                 Application.Run(new welcomePage(row1, row2, row3));
             }
             

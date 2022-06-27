@@ -88,6 +88,7 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "available seats";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(seat_choose);
             // 
             // button3
             // 
@@ -214,7 +215,7 @@
             label8.Size = new System.Drawing.Size(44, 15);
             label8.TabIndex = 13;
             label8.Text = "Review";
-            label8.Click += new System.EventHandler(label8_Click);
+            //label8.Click += new System.EventHandler();
             // 
             // numericUpDown1
             // 
@@ -231,7 +232,7 @@
             label7.Size = new System.Drawing.Size(54, 15);
             label7.TabIndex = 15;
             label7.Text = "out of 10";
-            label7.Click += new System.EventHandler(label7_Click);
+            //label7.Click += new System.EventHandler(label7_Click);
             // 
             // label6
             // 

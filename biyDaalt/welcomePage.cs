@@ -18,11 +18,26 @@ namespace biyDaalt
             InitializeComponent();
             statusChanged();
         }
-        public welcomePage(List<String> row1, List<String> row2, List<String> row3)
+        public welcomePage(List<String> row1 = null, List<String> row2 = null, List<String> row3 = null)
         {
             InitializeComponent();
             statusChanged();
             //each row has the needed info
+            if(row1 != null)
+            {
+                this.label2.Text = row1[0] + " " + row1[1];
+                this.richTextBox1.Text = row1[2] + "/10\n" + row1[3];
+            }
+            if(row2 != null)
+            {
+                this.label3.Text = row2[0] + " " + row2[1];
+                this.richTextBox2.Text = row2[2] + "/10\n" + row2[3];
+            }
+            if(row3 != null)
+            {
+                this.label4.Text = row3[0] + " " + row3[1];
+                this.richTextBox3.Text = row3[2] + "/10\n" + row3[3];
+            }
         }
 
 
@@ -54,15 +69,12 @@ namespace biyDaalt
             
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void seat_choose(object sender, EventArgs e)
         {
-
+            seatChoose seatchoose = new seatChoose();
+            seatchoose.ShowDialog();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         public void login(object sender, EventArgs e)
         {
             login login = new login();
@@ -83,14 +95,5 @@ namespace biyDaalt
             }
         }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

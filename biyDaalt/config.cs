@@ -13,6 +13,13 @@ namespace biyDaalt
     {
         private static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
 
+        public static string seat_using = "";
+        public static string Seat_using
+        {
+            get { return seat_using; }
+            set { seat_using = value; }
+        }
+
         public static bool isAdmin = false;
         public static bool IsAdmin
         {

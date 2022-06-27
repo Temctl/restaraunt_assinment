@@ -10,7 +10,7 @@ namespace biyDaalt
 {
     internal static class dataHandler
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
 
 
         public static bool submit_review(string review, string firstName, string lastName, int value)
@@ -69,13 +69,13 @@ namespace biyDaalt
                                 int boxIndex = 1;
                                 List<String> rows = new List<String>();
                                 while (reader.Read())
-                                { 
+                                {
                                     rows.Add(reader["firstName"].ToString());
                                     rows.Add(reader["lastName"].ToString());
                                     rows.Add(reader["value"].ToString());
                                     rows.Add(reader["review"].ToString());
                                     result[boxIndex.ToString()] = rows;
-                                    boxIndex ++;
+                                    boxIndex++;
                                 }
                                 Debug.WriteLine("1");
                                 return result;
@@ -101,6 +101,93 @@ namespace biyDaalt
                 temp.Add(ex.ToString());
                 result["error"] = temp;
                 return result;
+            }
+        }
+
+        public static bool occupy_seat(int index, string firstName, string lastName)
+        {
+            string cmdString = "update dbo.Tables set current_user_Fname = @val3, current_user_Lname = @val4, availability = @val1 where Id = @val2";
+            //string cmdString = "select * from Users";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cs))
+                {
+                    using (var command = new SqlCommand())
+                    {
+                        command.Connection = conn;
+                        command.CommandText = cmdString;
+                        //adding the parameters
+                        int temp = 0;
+                        if(firstName == "")
+                        {
+                            temp = 1;
+                        }
+                        command.Parameters.AddWithValue("@val3", firstName);
+                        command.Parameters.AddWithValue("@val4", lastName);
+                        command.Parameters.AddWithValue("@val1", 0);
+                        command.Parameters.AddWithValue("@val2", index);
+                        try
+                        {
+                            conn.Open();
+                            command.ExecuteNonQuery();
+                            Debug.WriteLine("2");
+                            return true;
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine("error is: -------\n" + ex.ToString());
+                            return false;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool delete_user_seat(string firstname, string lastname)
+        {
+            string cmdString = "SELECT Id FROM dbo.Tables where current_user_Fname = @val1 and current_user_Lname = @val2";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cs))
+                {
+                    using (var command = new SqlCommand(cmdString, conn))
+                    {
+                        command.Parameters.AddWithValue("@val1", firstname);
+                        command.Parameters.AddWithValue("@val2", lastname);
+                        conn.Open();
+                        try
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.HasRows)
+                                {
+                                    while (reader.Read())
+                                    {
+                                        Debug.WriteLine("id is " + (int)reader["Id"]);
+                                        occupy_seat(((int)reader["Id"]), "", "");
+                                    }
+                                }
+                                return true; 
+                            }
+                        }
+                        catch (Exception exec)
+                        {
+                            Debug.WriteLine(exec.ToString());
+                            return false;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("error: ---- " + ex.ToString);
+                return false;
             }
         }
     }
