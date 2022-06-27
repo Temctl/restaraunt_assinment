@@ -10,7 +10,7 @@ namespace biyDaalt
 {
     internal static class dataHandler
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
 
 
         public static bool submit_review(string review, string firstName, string lastName, int value)
@@ -51,10 +51,10 @@ namespace biyDaalt
             }
         }
 
-        public static Dictionary<string, object> return_review()
+        public static Dictionary<string, List<String>> return_review()
         {
-            Dictionary<string, object> result = new Dictionary<string, object>();
-            string cmdString = "SELECT top 3 * FROM dbo.Reviews order by Id desc";
+            Dictionary<string, List<String>> result = new Dictionary<string, List<String>>();
+            string cmdString = "SELECT top 3 review, firstName, lastName, value FROM dbo.Reviews order by Id desc";
             try
             {
                 using (SqlConnection conn = new SqlConnection(cs))
@@ -67,21 +67,16 @@ namespace biyDaalt
                             using (SqlDataReader reader = command.ExecuteReader())
                             {
                                 int boxIndex = 1;
-                                int columns = 4;
-                                List < List<string>> rows = new List<List<string>>();
+                                List<String> rows = new List<String>();
                                 while (reader.Read())
-                                {
-                                    List<string> row = new List<string>();
-                                    for (int i = 1; i <= columns; i++)
-                                    {
-                                        Debug.WriteLine(i);
-                                        Debug.WriteLine(reader.GetString(i));
-                                        row.Add(reader.GetString(i));
-                                        
-                                    }
-                                    rows.Add(row);
+                                { 
+                                    rows.Add(reader["firstName"].ToString());
+                                    rows.Add(reader["lastName"].ToString());
+                                    rows.Add(reader["value"].ToString());
+                                    rows.Add(reader["review"].ToString());
+                                    result[boxIndex.ToString()] = rows;
+                                    boxIndex ++;
                                 }
-                                result["review"] = rows;
                                 Debug.WriteLine("1");
                                 return result;
                             }
@@ -89,7 +84,9 @@ namespace biyDaalt
                         catch (Exception exec)
                         {
                             Debug.WriteLine(exec.GetType);
-                            result["review"] = false;
+                            List<String> temp = new List<String>();
+                            temp.Add(exec.ToString());
+                            result["error"] = temp;
                             return result;
                         }
                     }
@@ -99,7 +96,10 @@ namespace biyDaalt
             catch (Exception ex)
             {
                 Debug.WriteLine("error: ---- " + ex.ToString);
-                result["review"] = false;
+                Debug.WriteLine(ex.GetType);
+                List<String> temp = new List<String>();
+                temp.Add(ex.ToString());
+                result["error"] = temp;
                 return result;
             }
         }

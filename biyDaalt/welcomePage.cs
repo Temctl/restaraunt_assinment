@@ -17,8 +17,14 @@ namespace biyDaalt
         {
             InitializeComponent();
             statusChanged();
-            Dictionary<string, object> reviews = dataHandler.return_review();
         }
+        public welcomePage(List<String> row1, List<String> row2, List<String> row3)
+        {
+            InitializeComponent();
+            statusChanged();
+            //each row has the needed info
+        }
+
 
         public static void statusChanged()
         {
