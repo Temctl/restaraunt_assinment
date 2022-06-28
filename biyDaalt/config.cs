@@ -79,6 +79,9 @@ namespace biyDaalt
             set { password = value; }   
         }
 
+        public static string ADMIN_EMAIL = "admin1";
+        public static string ADMIN_PASSWORD = "admin2022";
+
         //
         //functions
         //

@@ -124,7 +124,7 @@ namespace biyDaalt
                         }
                         command.Parameters.AddWithValue("@val3", firstName);
                         command.Parameters.AddWithValue("@val4", lastName);
-                        command.Parameters.AddWithValue("@val1", 0);
+                        command.Parameters.AddWithValue("@val1", temp);
                         command.Parameters.AddWithValue("@val2", index);
                         try
                         {
@@ -178,6 +178,96 @@ namespace biyDaalt
                         catch (Exception exec)
                         {
                             Debug.WriteLine(exec.ToString());
+                            return false;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("error: ---- " + ex.ToString);
+                return false;
+            }
+        }
+        public static bool cancel_seat(int seat_index)//admin will cancel a seat
+        {
+            return occupy_seat(seat_index, "", "");
+        }
+
+        public static Dictionary<string, string> returnName(int seat_index)
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>();
+            string cmdString = "SELECT firstName, lastName FROM dbo.Tables where Id = @val1";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cs))
+                {
+                    using (var command = new SqlCommand(cmdString, conn))
+                    {
+                        command.Parameters.AddWithValue("@val1", seat_index);
+                        conn.Open();
+                        try
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    result["firstName"] = reader["firstName"].ToString();
+                                    result["lastName"] = reader["lastName"].ToString();
+                                }
+                                Debug.WriteLine("1");
+                                return result;
+                            }
+                        }
+                        catch (Exception exec)
+                        {
+                            Debug.WriteLine(exec.GetType);
+                            string temp = (exec.ToString());
+                            result["error"] = temp;
+                            return result;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("error: ---- " + ex.ToString);
+                string temp = (ex.ToString());
+                result["error"] = temp;
+                return result;
+            }
+        }
+
+        public static bool isAvailable(int seat_index)
+        {
+            string cmdString = "SELECT Id FROM dbo.Tables where Id = @val1";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cs))
+                {
+                    using (var command = new SqlCommand(cmdString, conn))
+                    {
+                        command.Parameters.AddWithValue("@val1", seat_index);
+                        conn.Open();
+                        try
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.HasRows)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                        catch (Exception exec)
+                        {
+                            Debug.WriteLine("blahblah_____ " + exec.ToString());
                             return false;
                         }
                     }

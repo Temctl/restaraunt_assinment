@@ -13,6 +13,7 @@ namespace biyDaalt
 {
     public partial class welcomePage : Form
     {
+        static seatChoose seatchoose;
         public welcomePage()
         {
             InitializeComponent();
@@ -43,37 +44,54 @@ namespace biyDaalt
 
         public static void statusChanged()
         {
-            if (config.logged)
+            if (config.IsAdmin)
             {
                 button1.Text = "Switch Account";
-                button5.Hide();
-                richTextBox4.Show();
-                button4.Show();
-                label5.Text = "How was our service?";
-                numericUpDown1.Show();
-                label7.Show();
-                label6.Show();
-                label8.Show();
                 button3.Show();
             }
             else
             {
-                button5.Show();
-                label5.Text = "Log in to write a review";
-                richTextBox4.Hide();
-                button4.Hide();
-                numericUpDown1.Hide();
-                label7.Hide();
-                label6.Hide();
-                label8.Hide();
-                button3.Hide();
+                if (config.logged)
+                {
+                    button1.Text = "Switch Account";
+                    button5.Hide();
+                    richTextBox4.Show();
+                    button4.Show();
+                    label5.Text = "How was our service?";
+                    numericUpDown1.Show();
+                    label7.Show();
+                    label6.Show();
+                    label8.Show();
+                    button3.Show();
+                }
+                else
+                {
+                    button5.Show();
+                    label5.Text = "Log in to write a review";
+                    richTextBox4.Hide();
+                    button4.Hide();
+                    numericUpDown1.Hide();
+                    label7.Hide();
+                    label6.Hide();
+                    label8.Hide();
+                    button3.Hide();
+                }
             }
-            
         }
 
         private void seat_choose(object sender, EventArgs e)
         {
-            seatChoose seatchoose = new seatChoose();
+            seat_start();
+        }
+
+        public static void seat_start()
+        {
+            bool temp = false;
+            if (config.IsAdmin)
+            {
+                temp = true;
+            }
+            seatchoose = new seatChoose(temp);
             seatchoose.ShowDialog();
         }
 

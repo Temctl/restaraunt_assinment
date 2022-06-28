@@ -27,66 +27,79 @@ namespace biyDaalt
         {
             signup signup = new signup();
             signup.ShowDialog();
+            welcomePage.statusChanged();
+            this.Dispose();
         }
 
 
 
         private void login_helper(string email, string password)
         {
-            string cmdString = "SELECT * FROM dbo.User_info WHERE email = @val1 AND password = @val2";
-            try
+            if(email == config.ADMIN_EMAIL && password == config.ADMIN_PASSWORD)
             {
-                using (SqlConnection conn = new SqlConnection(cs))
+                config.isAdmin = true;
+                MessageBox.Show("Admin logged in!");
+                welcomePage.seat_start();
+                this.Dispose();
+            }
+            else
+            {
+                string cmdString = "SELECT * FROM dbo.User_info WHERE email = @val1 AND password = @val2";
+                try
                 {
-                    using (var command = new SqlCommand(cmdString, conn))
+                    using (SqlConnection conn = new SqlConnection(cs))
                     {
-                        command.Parameters.AddWithValue("@val1", email);
-                        command.Parameters.AddWithValue("@val2", password);
-                        conn.Open();
-                        try
+                        using (var command = new SqlCommand(cmdString, conn))
                         {
-                            using (SqlDataReader reader = command.ExecuteReader())
+                            command.Parameters.AddWithValue("@val1", email);
+                            command.Parameters.AddWithValue("@val2", password);
+                            conn.Open();
+                            try
                             {
-                                Debug.WriteLine("1");
-                                reader.Read();
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    Debug.WriteLine("1");
+                                    reader.Read();
 
-                                List<string> info = new List<string>();
-                                info.Add(reader.GetString(firstName));
-                                info.Add(reader.GetString(lastName));
-                                info.Add(reader.GetString(emailIndex));
-                                info.Add(reader.GetString(phoneNUmber));
-                                info.Add(reader.GetString(address));
-                                info.Add(reader.GetString(passwordIndex));
-                                bool result = config.setEverything(info, false);
-                                if (result)
-                                {
-                                    this.Hide();
-                                    MessageBox.Show("You are logged in!");
-                                    welcomePage.statusChanged();
-                                    this.Dispose();
-                                }
-                                else
-                                {
-                                    Debug.WriteLine("something went wrong");
+                                    List<string> info = new List<string>();
+                                    info.Add(reader.GetString(firstName));
+                                    info.Add(reader.GetString(lastName));
+                                    info.Add(reader.GetString(emailIndex));
+                                    info.Add(reader.GetString(phoneNUmber));
+                                    info.Add(reader.GetString(address));
+                                    info.Add(reader.GetString(passwordIndex));
+                                    bool result = config.setEverything(info, false);
+                                    if (result)
+                                    {
+                                        this.Hide();
+                                        MessageBox.Show("You are logged in!");
+                                        welcomePage.statusChanged();
+                                        this.Dispose();
+                                    }
+                                    else
+                                    {
+                                        Debug.WriteLine("something went wrong");
+                                    }
                                 }
                             }
-                        }
-                        catch (Exception exec)
-                        {
-                            if (exec.InnerException is (System.InvalidOperationException))
+                            catch (Exception exec)
                             {
-                                Debug.WriteLine("change it");
+                                if (exec.InnerException is (System.InvalidOperationException))
+                                {
+                                    Debug.WriteLine("change it");
+                                }
+                                Debug.WriteLine(exec.GetType);
                             }
-                            Debug.WriteLine(exec.GetType);
                         }
                     }
-                }
 
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("error: ---- " + ex.ToString);
+                }
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("error: ---- " + ex.ToString);
-            }
+            
         }
 
         public void erase()
