@@ -147,7 +147,7 @@ namespace biyDaalt
             }
         }
 
-        public void clean()
+        public static void clean()
         {
             FirstName = "";
             LastName = "";

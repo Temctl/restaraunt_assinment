@@ -54,6 +54,7 @@ namespace biyDaalt
                 label7.Show();
                 label6.Show();
                 label8.Show();
+                button3.Show();
             }
             else
             {
@@ -65,6 +66,7 @@ namespace biyDaalt
                 label7.Hide();
                 label6.Hide();
                 label8.Hide();
+                button3.Hide();
             }
             
         }
@@ -95,5 +97,9 @@ namespace biyDaalt
             }
         }
 
+        private void log_out(object sender, EventArgs e)
+        {
+            config.clean();
+        }
     }
 }

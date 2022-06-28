@@ -34,7 +34,7 @@
             button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            button3 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
@@ -92,12 +92,13 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(34, 461);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(102, 23);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            button3.Location = new System.Drawing.Point(34, 461);
+            button3.Name = "button3";
+            button3.Size = new System.Drawing.Size(102, 23);
+            button3.TabIndex = 8;
+            button3.Text = "logout";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += new System.EventHandler(this.log_out);
             // 
             // tabControl1
             // 
@@ -286,7 +287,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(999, 514);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(button1);
@@ -306,7 +307,7 @@
         #endregion
         private PictureBox pictureBox1;
         private Button button2;
-        private Button button3;
+        static private Button button3;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;

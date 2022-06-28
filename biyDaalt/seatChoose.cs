@@ -79,7 +79,8 @@ namespace biyDaalt
             string lastname = config.lastName;
             if (!config.Logged)
             {
-                //get their info to config
+                login login = new login();
+                login.ShowDialog();
             }
             bool result = dataHandler.delete_user_seat(firstname, lastname);
             chosen_seat.Enabled = false;
@@ -97,7 +98,8 @@ namespace biyDaalt
             string lastname = config.lastName;
             if (!config.Logged)
             {
-                //get their info to config
+                login login = new login();
+                login.ShowDialog();
             }
             bool result = dataHandler.delete_user_seat(firstname, lastname);
         }
