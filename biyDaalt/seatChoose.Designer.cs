@@ -251,7 +251,7 @@
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(75, 23);
             this.button18.TabIndex = 18;
-            this.button18.Text = "Cancel";
+            this.button18.Text = "Cancel seat";
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.cancel_seat);
             // 

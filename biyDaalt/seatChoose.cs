@@ -144,6 +144,10 @@ namespace biyDaalt
                 {
                     Debug.WriteLine("something wriong");
                 }
+                else
+                {
+                    this.Dispose();
+                }
             }
         }
 
