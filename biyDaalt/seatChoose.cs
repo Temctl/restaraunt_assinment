@@ -19,7 +19,7 @@ namespace biyDaalt
         private bool isAdmin = false;
 
         private Button chosen_seat;
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
 
         public seatChoose(bool isAdmin)
         {
@@ -69,7 +69,7 @@ namespace biyDaalt
                                         string plus = "";
                                         if (isAdmin)
                                         {
-                                            plus = " \n" + reader["firstName"] + " " + reader["lastName"];
+                                            plus = " \n" + reader["current_user_Fname"].ToString() + " " + reader["current_user_Lname"].ToString();
                                         }
                                         else
                                         {
@@ -130,10 +130,12 @@ namespace biyDaalt
             if (!config.Logged && !config.IsAdmin)
             {
                 login login = new login();
+                this.Hide();
                 login.ShowDialog();
             }
             if (!config.IsAdmin)
             {
+                this.Show();
                 string firstname = config.firstName;
                 string lastname = config.lastName;
                 bool result = dataHandler.delete_user_seat(firstname, lastname);
@@ -148,6 +150,36 @@ namespace biyDaalt
                 {
                     this.Dispose();
                 }
+            }
+            else
+            {
+                if(chosen_seat == null)
+                {
+
+                }
+                else
+                {
+                    signup sign = new signup(true);
+                    sign.ShowDialog();
+                    string firstname = config.firstName;
+                    string lastname = config.lastName;
+                    bool result = dataHandler.delete_user_seat(firstname, lastname);
+                    chosen_seat.Enabled = false;
+                    chosen_seat.Text = "unavailable";
+                    this.Hide();
+                    result = dataHandler.occupy_seat(chosen_seat.TabIndex, firstname, lastname);
+                    if (!result)
+                    {
+                        Debug.WriteLine("something wriong");
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        this.Hide();
+                        this.Dispose();
+                    }
+                }
+                
             }
         }
 

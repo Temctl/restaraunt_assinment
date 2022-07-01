@@ -12,7 +12,7 @@ namespace biyDaalt
         private const int phoneNUmber = 5;
         private const int address = 6;
 
-        string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
         public login()
         {
             InitializeComponent();
@@ -39,6 +39,7 @@ namespace biyDaalt
             {
                 config.isAdmin = true;
                 MessageBox.Show("Admin logged in!");
+                this.Hide();
                 welcomePage.seat_start();
                 this.Dispose();
             }

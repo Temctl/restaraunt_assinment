@@ -12,17 +12,36 @@ namespace biyDaalt
 {
     public partial class signup : Form
     {
+        bool custom = false;
         public signup()
         {
+            InitializeComponent();
+        }
+        public signup(bool custom_user)
+        {
+            custom = custom_user;
             InitializeComponent();
         }
 
         public void submit_clicked(object sender, EventArgs e)
         {
-            
-            NewPassword password = new NewPassword(getInfo());
-            password.ShowDialog();
-            this.Dispose();
+            if (custom)
+            {
+                config.FirstName = this.textBox1.Text;
+                config.LastName = this.textBox2.Text;
+                config.Email = this.textBox3.Text;
+                config.PhoneNumber = this.textBox4.Text;
+                config.Address = this.textBox5.Text;
+                config.Password = "";
+                config.signup();
+                this.Dispose();
+            }
+            else
+            {
+                NewPassword password = new NewPassword(getInfo());
+                password.ShowDialog();
+                this.Dispose();
+            }
         }
 
         private List<string> getInfo()

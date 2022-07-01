@@ -11,7 +11,7 @@ namespace biyDaalt
 {
     internal class config // file with all the user information whenthey are logged in
     {
-        private static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        private static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
 
         public static string seat_using = "";
         public static string Seat_using
