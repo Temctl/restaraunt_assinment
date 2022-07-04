@@ -8,9 +8,9 @@ using System.Diagnostics;
 
 namespace biyDaalt
 {
-    internal static class dataHandler
+    public static class dataHandler 
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\Temctl\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
 
 
         public static bool submit_review(string review, string firstName, string lastName, int value)
@@ -198,7 +198,7 @@ namespace biyDaalt
         public static Dictionary<string, string> returnName(int seat_index)
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
-            string cmdString = "SELECT firstName, lastName FROM dbo.Tables where Id = @val1";
+            string cmdString = "SELECT current_user_Fname, current_user_Lname FROM dbo.Tables where Id = @val1";
             try
             {
                 using (SqlConnection conn = new SqlConnection(cs))
@@ -213,8 +213,8 @@ namespace biyDaalt
                             {
                                 while (reader.Read())
                                 {
-                                    result["firstName"] = reader["firstName"].ToString();
-                                    result["lastName"] = reader["lastName"].ToString();
+                                    result["firstName"] = reader["current_user_Fname"].ToString();
+                                    result["lastName"] = reader["current_user_Lname"].ToString();
                                 }
                                 Debug.WriteLine("1");
                                 return result;
@@ -222,7 +222,7 @@ namespace biyDaalt
                         }
                         catch (Exception exec)
                         {
-                            Debug.WriteLine(exec.GetType);
+                            Debug.WriteLine(exec.ToString());
                             string temp = (exec.ToString());
                             result["error"] = temp;
                             return result;

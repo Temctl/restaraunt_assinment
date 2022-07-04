@@ -12,7 +12,7 @@ namespace biyDaalt
         private const int phoneNUmber = 5;
         private const int address = 6;
 
-        string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\Temctl\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
         public login()
         {
             InitializeComponent();
@@ -48,12 +48,15 @@ namespace biyDaalt
                 string cmdString = "SELECT * FROM dbo.User_info WHERE email = @val1 AND password = @val2";
                 try
                 {
+                    Debug.WriteLine("fdsaf");
                     using (SqlConnection conn = new SqlConnection(cs))
                     {
+                        Debug.WriteLine("fdsaf");
                         using (var command = new SqlCommand(cmdString, conn))
                         {
                             command.Parameters.AddWithValue("@val1", email);
                             command.Parameters.AddWithValue("@val2", password);
+                            Debug.WriteLine("fdsaf");
                             conn.Open();
                             try
                             {
@@ -89,7 +92,7 @@ namespace biyDaalt
                                 {
                                     Debug.WriteLine("change it");
                                 }
-                                Debug.WriteLine(exec.GetType);
+                                Debug.WriteLine(exec.ToString());
                             }
                         }
                     }
@@ -97,7 +100,7 @@ namespace biyDaalt
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("error: ---- " + ex.ToString);
+                    Debug.WriteLine("error: ---- " + ex.ToString());
                 }
             }
             
