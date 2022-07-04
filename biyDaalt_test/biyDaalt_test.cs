@@ -5,25 +5,48 @@ namespace biyDaalt_test
 {
     public class biyDaalt_test
     {
+        string testfirstname = "testname2";
+        string testlastname = "testlastName2";
+        [Fact]
+        public void occupy_seat_working()
+        {
+            
+
+            bool result = dataHandler.occupy_seat(2, testfirstname, testlastname);
+            Dictionary<string, string> names = dataHandler.returnName(2);
+
+            bool sameName;
+            if (names["firstName"].ToString() == testfirstname && names["lastName"].ToString() == testlastname)
+            {
+                sameName = true;
+            }
+            else
+            {
+                sameName = false;
+            }
+
+            Assert.True(sameName && result);
+        }
+
         [Fact]
         public void is_seat6_babafirstName()
         {
-            Dictionary<string, string> data = biyDaalt.dataHandler.returnName(6);
+            Dictionary<string, string> data = biyDaalt.dataHandler.returnName(2);
 
-            Assert.Equal("baba", data["firstName"].ToString());
+            Assert.Equal(testfirstname, data["firstName"].ToString());
         }
 
         [Fact]
         public void is_seat6_babalastName()
         {
-            Dictionary<string, string> data = biyDaalt.dataHandler.returnName(6);
+            Dictionary<string, string> data = biyDaalt.dataHandler.returnName(2);
 
-            Assert.Equal("bebe", data["lastname"].ToString());
+            Assert.Equal(testlastname, data["lastName"].ToString());
         }
 
 
         [Fact]
-        public void is_seat6_returnError()
+        public void is_seat5_returnError()
         {
             Dictionary<string, string> data = biyDaalt.dataHandler.returnName(5);
 
@@ -37,9 +60,9 @@ namespace biyDaalt_test
         }
 
         [Fact]
-        public void is_seat5_unavailable()
+        public void is_seat5_available()
         {
-            Assert.False(biyDaalt.dataHandler.isAvailable(5));
+            Assert.True(biyDaalt.dataHandler.isAvailable(5));
         }
 
         [Fact]
@@ -52,28 +75,6 @@ namespace biyDaalt_test
         public void delete_userSeat_resturns_false()
         {
             Assert.True(biyDaalt.dataHandler.delete_user_seat("fake", "fake"));
-        }
-
-        [Fact]
-        public void occupy_seat_working()
-        {
-            string testfirstname = "testname";
-            string testlastname = "testlastName";
-
-            bool result = dataHandler.occupy_seat(1, testfirstname, testlastname);
-            Dictionary<string, string> names = dataHandler.returnName(1);
-
-            bool sameName;
-            if (names["firstName"].ToString() == testfirstname && names["lastName"].ToString() == testlastname)
-            {
-                sameName = true;
-            }
-            else
-            {
-                sameName = false;
-            }
-
-            Assert.True(sameName && result);
         }
 
         [Fact]
