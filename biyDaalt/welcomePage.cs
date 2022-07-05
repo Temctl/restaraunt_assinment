@@ -63,6 +63,7 @@ namespace biyDaalt
                     label6.Show();
                     label8.Show();
                     button3.Show();
+                    button6.Show();
                 }
                 else
                 {
@@ -75,8 +76,15 @@ namespace biyDaalt
                     label6.Hide();
                     label8.Hide();
                     button3.Hide();
+                    button6.Hide();
                 }
             }
+        }
+
+        public void view_bookingDetail(object sender, EventArgs e)
+        {
+            ViewBooking viewBooking = new ViewBooking();
+            viewBooking.ShowDialog();
         }
 
         private void seat_choose(object sender, EventArgs e)

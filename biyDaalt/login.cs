@@ -12,7 +12,7 @@ namespace biyDaalt
         private const int phoneNUmber = 5;
         private const int address = 6;
 
-        string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\Temctl\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
         public login()
         {
             InitializeComponent();
@@ -37,6 +37,7 @@ namespace biyDaalt
         {
             if(email == config.ADMIN_EMAIL && password == config.ADMIN_PASSWORD)
             {
+                config.clean();
                 config.isAdmin = true;
                 MessageBox.Show("Admin logged in!");
                 this.Hide();
@@ -76,6 +77,19 @@ namespace biyDaalt
                                     if (result)
                                     {
                                         this.Hide();
+                                        Dictionary<string, string> seat = dataHandler.returnSeat(reader.GetString(firstName), reader.GetString(lastName));
+                                        if(seat.ContainsKey("error"))
+                                        {
+                                            
+                                        }
+                                        else
+                                        {
+                                            if (seat.ContainsKey("seat"))
+                                            {
+                                                config.Seat_using = Int32.Parse(seat["seat"].ToString());
+                                                config.Description = seat["description"].ToString();
+                                            }
+                                        }
                                         MessageBox.Show("You are logged in!");
                                         welcomePage.statusChanged();
                                         this.Dispose();

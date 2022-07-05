@@ -11,10 +11,17 @@ namespace biyDaalt
 {
     internal class config // file with all the user information whenthey are logged in
     {
-        private static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        static string cs = dataHandler.cs;
+        public static string description = "";
+        public static string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
 
-        public static string seat_using = "";
-        public static string Seat_using
+
+        public static int seat_using = -1;
+        public static int Seat_using
         {
             get { return seat_using; }
             set { seat_using = value; }
@@ -85,10 +92,11 @@ namespace biyDaalt
         //
         //functions
         //
-        public static bool setEverything(List<string> info, bool newUser)
+        public static bool setEverything(List<string> info, bool newUser)// sets up the class info
         {
             try
             {
+                Debug.WriteLine(info[5].ToString() + " is the password right?");
                 FirstName = info[0];
                 LastName = info[1];
                 Email = info[2];
@@ -112,7 +120,7 @@ namespace biyDaalt
             }
         }
 
-        public static void signup()
+        public static void signup()// adds this user info to the database and put the value of user to the values of this class
         {
             string cmdString = "INSERT INTO [dbo].[User_info] (firstName, lastName, email, password, phoneNumber, address) VALUES (@val1, @val2, @val3, @val4, @val5, @val6)";
             //string cmdString = "select * from Users";
@@ -150,7 +158,7 @@ namespace biyDaalt
             }
         }
 
-        public static void clean()
+        public static void clean()// cleans this class of any user info
         {
             FirstName = "";
             LastName = "";
@@ -158,6 +166,9 @@ namespace biyDaalt
             PhoneNumber = "";
             Address = "";
             Logged = false;
+            IsAdmin = false;
+            Description = "";
+            Seat_using = -1;
             welcomePage.statusChanged();
         }
     }

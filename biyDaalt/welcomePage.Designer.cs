@@ -53,6 +53,7 @@
             button4 = new System.Windows.Forms.Button();
             label5 = new System.Windows.Forms.Label();
             richTextBox4 = new System.Windows.Forms.RichTextBox();
+            button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -78,7 +79,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Image = Image.FromFile("../../../image.jpg");
             // 
             // button2
             // 
@@ -88,7 +88,7 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "available seats";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(seat_choose);
+            this.button2.Click += new System.EventHandler(this.seat_choose);
             // 
             // button3
             // 
@@ -192,6 +192,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(button6);
             this.tabPage2.Controls.Add(label8);
             this.tabPage2.Controls.Add(numericUpDown1);
             this.tabPage2.Controls.Add(label7);
@@ -216,7 +217,6 @@
             label8.Size = new System.Drawing.Size(44, 15);
             label8.TabIndex = 13;
             label8.Text = "Review";
-            //label8.Click += new System.EventHandler();
             // 
             // numericUpDown1
             // 
@@ -233,7 +233,6 @@
             label7.Size = new System.Drawing.Size(54, 15);
             label7.TabIndex = 15;
             label7.Text = "out of 10";
-            //label7.Click += new System.EventHandler(label7_Click);
             // 
             // label6
             // 
@@ -246,9 +245,9 @@
             // 
             // button5
             // 
-            button5.Location = new System.Drawing.Point(50, 367);
+            button5.Location = new System.Drawing.Point(50, 330);
             button5.Name = "button5";
-            button5.Size = new System.Drawing.Size(121, 67);
+            button5.Size = new System.Drawing.Size(121, 35);
             button5.TabIndex = 17;
             button5.Text = "Login";
             button5.UseVisualStyleBackColor = true;
@@ -281,6 +280,16 @@
             richTextBox4.TabIndex = 20;
             richTextBox4.Text = "";
             // 
+            // button6
+            // 
+            button6.Location = new System.Drawing.Point(60, 365);
+            button6.Name = "button6";
+            button6.Size = new System.Drawing.Size(102, 45);
+            button6.TabIndex = 21;
+            button6.Text = "View booking details"; 
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += new System.EventHandler(this.view_bookingDetail);
+            // 
             // welcomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -307,7 +316,6 @@
         #endregion
         private PictureBox pictureBox1;
         private Button button2;
-        static private Button button3;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
@@ -318,6 +326,8 @@
         private Label label2;
         private RichTextBox richTextBox1;
         private Label label1;
+        static private Button button6;
+        static private Button button3;
         static private Label label8;
         static private NumericUpDown numericUpDown1;
         static private Label label7;
