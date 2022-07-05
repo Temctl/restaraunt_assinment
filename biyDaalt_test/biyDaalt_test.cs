@@ -84,5 +84,25 @@ namespace biyDaalt_test
 
             Assert.True(result);
         }
+
+        [Fact]
+        public void update_seatUserNames_working()
+        {
+            int seat_index = 10;
+            bool result = dataHandler.update_seatUserNames("test1", "testlast", "newf", "newl");
+            Dictionary<string, string> temp = dataHandler.returnSeat("newf", "newl");
+
+
+            Assert.True(result && (Int32.Parse(temp["seat"].ToString()) == 10));
+        }
+
+        [Fact]
+        public void deleteUser_working()
+        {
+            bool result = dataHandler.deleteUser("qwe");
+
+
+            Assert.True(result);
+        }
     }
 }

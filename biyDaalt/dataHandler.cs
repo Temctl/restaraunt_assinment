@@ -10,7 +10,7 @@ namespace biyDaalt
 {
     public static class dataHandler 
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\Temctl\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
 
 
         public static bool submit_review(string review, string firstName, string lastName, int value)// submits review to the database under this name with the value that the user gave
@@ -266,17 +266,12 @@ namespace biyDaalt
                         conn.Open();
                         try
                         {
-                            Debug.WriteLine(" fdhjskfhdjksfhjdsiahfj");
                             using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                Debug.WriteLine(" fdhjskfhdjksfhjdsiahfj");
                                 if (reader.HasRows)
                                 {
-                                    Debug.WriteLine(" fdhjskfhdjksfhjdsiahfj");
                                     while (reader.Read())
                                     {
-                                        Debug.WriteLine(reader["Id"].ToString() + " fdhjskfhdjksfhjdsiahfj");
-                                        Debug.WriteLine(reader["description"].ToString() + " fdhjskfhdjksfhjdsiahfj");
                                         result["seat"] = reader["Id"].ToString();
                                         result["description"] = reader["description"].ToString();
                                     }
@@ -399,7 +394,7 @@ namespace biyDaalt
             }
         }
 
-        public static bool update_seatUserNames(string old_firstName, string old_lastName, string firstName, string lastName)
+        public static bool update_seatUserNames(string old_firstName, string old_lastName, string firstName, string lastName)//updates the user name on the reserved seat
         {
             string cmdString = "update [dbo].[Tables] set current_user_Fname = @val1, current_user_Lname = @val2 where current_user_Fname = @val3 and current_user_Lname = @val4";
             //string cmdString = "select * from Users";
