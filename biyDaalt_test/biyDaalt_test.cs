@@ -29,7 +29,7 @@ namespace biyDaalt_test
         }
 
         [Fact]
-        public void is_seat6_babafirstName()
+        public void is_seat2_firstName()
         {
             Dictionary<string, string> data = biyDaalt.dataHandler.returnName(2);
 
@@ -37,7 +37,7 @@ namespace biyDaalt_test
         }
 
         [Fact]
-        public void is_seat6_babalastName()
+        public void is_seat2_lastName()
         {
             Dictionary<string, string> data = biyDaalt.dataHandler.returnName(2);
 
@@ -46,11 +46,19 @@ namespace biyDaalt_test
 
 
         [Fact]
-        public void is_seat5_returnError()
+        public void is_seat5_returnName()
         {
             Dictionary<string, string> data = biyDaalt.dataHandler.returnName(5);
 
-            Assert.True(data["firstName"].ToString() == "" && data["lastName"].ToString() == "");
+            Assert.True(data["firstName"].ToString() == "tem" && data["lastName"].ToString() == "ulz");
+        }
+
+        [Fact]
+        public void is_seat12_returnName()
+        {
+            Dictionary<string, string> data = biyDaalt.dataHandler.returnName(12);
+
+            Assert.True(data["error"].ToString() == "not found");
         }
 
         [Fact]
