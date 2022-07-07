@@ -15,6 +15,10 @@ namespace biyDaalt
 
         public static bool submit_review(string review, string firstName, string lastName, int value)// submits review to the database under this name with the value that the user gave
         {
+            if(review == "" || firstName == "" || lastName == "")
+            {
+                return false;
+            }
             string cmdString = "INSERT INTO [dbo].[Reviews] (review, firstName, lastName, value) VALUES (@val1, @val2, @val3, @val4)";
             //string cmdString = "select * from Users";
             try
@@ -119,9 +123,17 @@ namespace biyDaalt
                         command.CommandText = cmdString;
                         //adding the parameters
                         int temp = 0;
-                        if(firstName == "")
+                        if(firstName == "" && lastName == "")
                         {
                             temp = 1;
+                        }
+                        else
+                        {
+                            if(firstName == "" || lastName != "")
+                            {
+                                return false;
+                            }
+                            
                         }
                         command.Parameters.AddWithValue("@val3", firstName);
                         command.Parameters.AddWithValue("@val4", lastName);
@@ -151,44 +163,51 @@ namespace biyDaalt
 
         public static bool delete_user_seat(string firstname, string lastname)// deletes the reserved seat that is on this name
         {
-            string cmdString = "SELECT Id FROM dbo.Tables where current_user_Fname = @val1 and current_user_Lname = @val2";
-            try
+            if(firstname == "" || lastname == "")
             {
-                using (SqlConnection conn = new SqlConnection(cs))
+                return false;
+            }
+            else
+            {
+                string cmdString = "SELECT Id FROM dbo.Tables where current_user_Fname = @val1 and current_user_Lname = @val2";
+                try
                 {
-                    using (var command = new SqlCommand(cmdString, conn))
+                    using (SqlConnection conn = new SqlConnection(cs))
                     {
-                        command.Parameters.AddWithValue("@val1", firstname);
-                        command.Parameters.AddWithValue("@val2", lastname);
-                        conn.Open();
-                        try
+                        using (var command = new SqlCommand(cmdString, conn))
                         {
-                            using (SqlDataReader reader = command.ExecuteReader())
+                            command.Parameters.AddWithValue("@val1", firstname);
+                            command.Parameters.AddWithValue("@val2", lastname);
+                            conn.Open();
+                            try
                             {
-                                if (reader.HasRows)
+                                using (SqlDataReader reader = command.ExecuteReader())
                                 {
-                                    while (reader.Read())
+                                    if (reader.HasRows)
                                     {
-                                        Debug.WriteLine("id is " + (int)reader["Id"]);
-                                        occupy_seat(((int)reader["Id"]), "", "");
+                                        while (reader.Read())
+                                        {
+                                            Debug.WriteLine("id is " + (int)reader["Id"]);
+                                            occupy_seat(((int)reader["Id"]), "", "");
+                                        }
                                     }
+                                    return true;
                                 }
-                                return true; 
+                            }
+                            catch (Exception exec)
+                            {
+                                Debug.WriteLine(exec.ToString());
+                                return false;
                             }
                         }
-                        catch (Exception exec)
-                        {
-                            Debug.WriteLine(exec.ToString());
-                            return false;
-                        }
                     }
-                }
 
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("error: ---- " + ex.ToString);
-                return false;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("error: ---- " + ex.ToString);
+                    return false;
+                }
             }
         }
         public static bool cancel_seat(int seat_index)//admin will cancel a seat
@@ -344,12 +363,19 @@ namespace biyDaalt
         public static bool updateUserInfo(List<string> info)//updates the logged in users info
         {
             bool result;
-            result = deleteUser(info[2]);
-            if (result)
+            if(info[0].ToString() == "" || info[1].ToString() == "")
             {
-                update_seatUserNames(config.FirstName, config.LastName, info[0].ToString(), info[1].ToString());
-                info.Add(config.Password);
-                return config.setEverything(info, true);
+                result = deleteUser(info[2]);
+                if (result)
+                {
+                    update_seatUserNames(config.FirstName, config.LastName, info[0].ToString(), info[1].ToString());
+                    info.Add(config.Password);
+                    return config.setEverything(info, true);
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
@@ -360,6 +386,10 @@ namespace biyDaalt
 
         public static bool deleteUser(string email)// deletes from users with this email
         {
+            if(email == "")
+            {
+                return false;
+            }
             string cmdString = "delete from [dbo].[User_info] where email = @val1";
             //string cmdString = "select * from Users";
             try
@@ -396,6 +426,10 @@ namespace biyDaalt
 
         public static bool update_seatUserNames(string old_firstName, string old_lastName, string firstName, string lastName)//updates the user name on the reserved seat
         {
+            if(firstName == "" || lastName == "")
+            {
+                return false;
+            }
             string cmdString = "update [dbo].[Tables] set current_user_Fname = @val1, current_user_Lname = @val2 where current_user_Fname = @val3 and current_user_Lname = @val4";
             //string cmdString = "select * from Users";
             try
