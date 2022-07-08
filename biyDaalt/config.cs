@@ -133,12 +133,12 @@ namespace biyDaalt
                         command.Connection = conn;
                         command.CommandText = cmdString;
                         //adding the parameters
-                        command.Parameters.AddWithValue("@val1", firstName);
-                        command.Parameters.AddWithValue("@val2", lastName);
-                        command.Parameters.AddWithValue("@val3", email);
-                        command.Parameters.AddWithValue("@val4", password);
-                        command.Parameters.AddWithValue("@val5", phoneNumber);
-                        command.Parameters.AddWithValue("@val6", address);
+                        command.Parameters.AddWithValue("@val1", FirstName);
+                        command.Parameters.AddWithValue("@val2", LastName);
+                        command.Parameters.AddWithValue("@val3", Email);
+                        command.Parameters.AddWithValue("@val4", Password);
+                        command.Parameters.AddWithValue("@val5", PhoneNumber);
+                        command.Parameters.AddWithValue("@val6", Address);
                         try
                         {
                             conn.Open();

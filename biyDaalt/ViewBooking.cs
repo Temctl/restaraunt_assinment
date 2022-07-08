@@ -30,7 +30,7 @@ namespace biyDaalt
             this.textBox3.Text = config.Email;
             this.textBox4.Text = config.PhoneNumber;
             this.textBox5.Text = config.Address;
-            Debug.WriteLine(config.Address, config.Email);
+            //Debug.WriteLine(config.Address, config.Email);
             if(config.Seat_using != null && config.Seat_using != -1)
             {
                 string temp = "";
@@ -86,7 +86,9 @@ namespace biyDaalt
                 info.Add(this.textBox3.Text);
                 info.Add(this.textBox4.Text);
                 info.Add(this.textBox5.Text);
+                Debug.WriteLine(info.ToString());
                 bool result = dataHandler.updateUserInfo(info);
+                Debug.WriteLine("error here is " + result.ToString());
                 if (result)
                 {
                     this.Dispose();

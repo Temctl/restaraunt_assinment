@@ -64,9 +64,11 @@ namespace biyDaalt
                     label8.Show();
                     button3.Show();
                     button6.Show();
+                    tabPage2.Show();
                 }
                 else
                 {
+                    button1.Text = "Login";
                     button5.Show();
                     label5.Text = "Log in to write a review";
                     richTextBox4.Hide();
@@ -77,6 +79,7 @@ namespace biyDaalt
                     label8.Hide();
                     button3.Hide();
                     button6.Hide();
+                    tabPage2.Hide();
                 }
             }
         }
@@ -119,13 +122,14 @@ namespace biyDaalt
             }
             else
             {
-                Debug.WriteLine("something went wrong");
+                MessageBox.Show("Please write the review!");
             }
         }
 
         private void log_out(object sender, EventArgs e)
         {
             config.clean();
+            statusChanged();
         }
     }
 }

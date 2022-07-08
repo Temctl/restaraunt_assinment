@@ -12,7 +12,7 @@ namespace biyDaalt
         private const int phoneNUmber = 5;
         private const int address = 6;
 
-        string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\Temctl\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
         public login()
         {
             InitializeComponent();
@@ -96,7 +96,7 @@ namespace biyDaalt
                                     }
                                     else
                                     {
-                                        Debug.WriteLine("something went wrong");
+                                        MessageBox.Show("Email or password was wrong");
                                     }
                                 }
                             }

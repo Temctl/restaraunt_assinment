@@ -19,7 +19,7 @@ namespace biyDaalt
         private bool isAdmin = false;
 
         private Button chosen_seat;
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tem\Source\Repos\Temctl\restaraunt_biyDaalt\biyDaalt\TablesData.mdf;Integrated Security=True";
 
         public seatChoose(bool isAdmin)
         {
@@ -101,30 +101,7 @@ namespace biyDaalt
             }
         }
         
-        public void seat_chosen(object sender, EventArgs e)
-        {
-            if (seat_change_bool)
-            {
-                Button newButton = (Button)sender;
-                bool fine = dataHandler.isAvailable(newButton.TabIndex);
-                if (fine)
-                {
-                    Dictionary<string, string> names = dataHandler.returnName(chosen_seat.TabIndex + 1);
-                    dataHandler.cancel_seat(chosen_seat.TabIndex + 1);
-                    bool done = dataHandler.occupy_seat(newButton.TabIndex, names["firstName"], names["lastName"]);
-                    if (!done)
-                    {
-                        Debug.WriteLine("not done");
-                    }
-                }
-                seat_change_bool = false;
-                
-            }
-            else
-            {
-                chosen_seat = (Button)sender;
-            }
-        }
+        
 
         private void submit(object sender, EventArgs e)
         {
@@ -184,12 +161,43 @@ namespace biyDaalt
             }
         }
 
+        public void seat_chosen(object sender, EventArgs e)
+        {
+            if (seat_change_bool)
+            {
+                Button newButton = (Button)sender;
+                bool fine = dataHandler.isAvailable(newButton.TabIndex + 1);
+                if (fine)
+                {
+                    Dictionary<string, string> names = dataHandler.returnName(chosen_seat.TabIndex + 1);
+                    dataHandler.cancel_seat(chosen_seat.TabIndex + 1);
+                    bool done = dataHandler.occupy_seat(newButton.TabIndex + 1, names["firstName"], names["lastName"]);
+                    if (!done)
+                    {
+                        Debug.WriteLine("not done");
+                    }
+                    else
+                    {
+                        seat_change_bool = false;
+                        this.Dispose();
+                    }
+                }
+                seat_change_bool = false;
+
+            }
+            else
+            {
+                chosen_seat = (Button)sender;
+            }
+        }
+
         public void change_seat(object sender, EventArgs e)
         {
             if (chosen_seat != null)
             {
                 seat_change_bool = true;
-
+                Debug.WriteLine("now change it");
+                Debug.WriteLine(chosen_seat.TabIndex + 1);
             }
             else
             {
@@ -224,6 +232,7 @@ namespace biyDaalt
                 if(chosen_seat != null)
                 {
                     dataHandler.cancel_seat(chosen_seat.TabIndex + 1);
+                    this.Dispose();
                 }
                 else
                 {

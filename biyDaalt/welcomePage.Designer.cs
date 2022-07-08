@@ -44,7 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            tabPage2 = new System.Windows.Forms.TabPage();
             label8 = new System.Windows.Forms.Label();
             numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             label7 = new System.Windows.Forms.Label();
@@ -57,7 +57,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +67,7 @@
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(102, 23);
             button1.TabIndex = 0;
-            button1.Text = "login";
+            button1.Text = "Login";
             button1.UseVisualStyleBackColor = true;
             button1.Click += new System.EventHandler(this.login);
             // 
@@ -103,7 +103,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(762, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 9;
@@ -124,7 +124,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(217, 462);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Reviews";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // label4
@@ -188,26 +188,26 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 11;
-            this.label1.Text = "label1";
+            this.label1.Text = "Reviews";
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(button6);
-            this.tabPage2.Controls.Add(label8);
-            this.tabPage2.Controls.Add(numericUpDown1);
-            this.tabPage2.Controls.Add(label7);
-            this.tabPage2.Controls.Add(label6);
-            this.tabPage2.Controls.Add(button5);
-            this.tabPage2.Controls.Add(button4);
-            this.tabPage2.Controls.Add(label5);
-            this.tabPage2.Controls.Add(richTextBox4);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(217, 462);
-            this.tabPage2.TabIndex = 12;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Controls.Add(button6);
+            tabPage2.Controls.Add(label8);
+            tabPage2.Controls.Add(numericUpDown1);
+            tabPage2.Controls.Add(label7);
+            tabPage2.Controls.Add(label6);
+            tabPage2.Controls.Add(button5);
+            tabPage2.Controls.Add(button4);
+            tabPage2.Controls.Add(label5);
+            tabPage2.Controls.Add(richTextBox4);
+            tabPage2.Location = new System.Drawing.Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            tabPage2.Size = new System.Drawing.Size(217, 462);
+            tabPage2.TabIndex = 12;
+            tabPage2.Text = "User";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -224,6 +224,7 @@
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new System.Drawing.Size(120, 23);
             numericUpDown1.TabIndex = 14;
+            numericUpDown1.Maximum = 10;
             // 
             // label7
             // 
@@ -301,13 +302,13 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(button1);
             this.Name = "welcomePage";
-            this.Text = "Form1";
+            this.Text = "Restaraunt";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
@@ -318,7 +319,7 @@
         private Button button2;
         private TabControl tabControl1;
         private TabPage tabPage1;
-        private TabPage tabPage2;
+        static private TabPage tabPage2;
         private Label label4;
         private Label label3;
         private RichTextBox richTextBox3;
